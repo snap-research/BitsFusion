@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>BitsFusion</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="./resources/bootstrap.min.css">
+    <link rel="stylesheet" href="./resources/font-awesome.min.css">
+    <link rel="stylesheet" href="./resources/codemirror.min.css">
+    <link rel="stylesheet" href="./resources/app.css">
+    <link rel="stylesheet" href="./resources/bootstrap.min(1).css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="./resources/jquery.min.js"></script>
+    <script src="./resources/bootstrap.min.js"></script>
+    <script src="./resources/codemirror.min.js"></script>
+    <script src="./resources/clipboard.min.js"></script>
+
+    <script src="./resources/app.js"></script>
+
+    <!-- <style>
+        .tldr {
+            padding: 10px;
+            background-color: #f0f0f0; /* Light gray background */
+            border-left: 5px solid #ff6347; /* Tomato color highlight */
+            font-weight: bold;
+        } 
+    </style> -->
+
+    <style>
+
+        .tldr {
+            margin: 20px auto;
+            width: 90%;
+            padding: 15px;
+            box-shadow: 0 0 14px rgb(0, 0, 0); /* Subtle shadow for depth */
+            text-align: center;
+            font-weight: bold;
+            background-color: #9fdfe7; /* Light yellow background */
+        }
+
+        img.two {
+            height: auto;
+            width: auto;
+          }
+
+    </style>
+
+</head>
+
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+
+            <div class="header">
+
+                <div class="title", style="font-size: 40pt; margin:0 auto; padding-top: 30pt; text-align: center;"> 
+
+                <!-- </div>padding-top: 10pt;">  Set padding as 10 if title is with two lines. -->
+                  BitsFusion: 1.99 bits Weight Quantization of Diffusion Model
+                    <!-- <br>
+                    <font color="grey" size="4">arXiv Preprint.</font> -->
+                </div>
+                <link rel="icon" href="images/bf.jpg" type="image/jpeg">
+              </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+                <div class="author", style="font-size: 16pt;">
+                    <a href="https://eclipsess.github.io/yangsui.github.io/" target="_blank", style="font-size: 16pt;">Yang Sui</a><sup>1,2</sup>&nbsp;&nbsp;&nbsp;
+                    <a href="https://scholar.google.com/citations?user=XUj8koUAAAAJ" target="_blank", style="font-size: 16pt;">Yanyu Li</a><sup>1</sup>&nbsp;&nbsp;&nbsp;
+                    <a href="https://anilkagak2.github.io/" target="_blank", style="font-size: 16pt;">Anil Kag</a><sup>1</sup>&nbsp;&nbsp;&nbsp;
+                    <a href="https://scholar.google.com/citations?user=nAaroNMAAAAJ&hl=en" target="_blank", style="font-size: 16pt;">Yerlan Idelbayev</a><sup>1</sup>&nbsp;&nbsp;&nbsp;
+                    <a href="https://scholar.google.com/citations?user=BV98MGAAAAAJ" target="_blank", style="font-size: 16pt;">Junli Cao</a><sup>1</sup>&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.linkedin.com/in/erichuju/" target="_blank", style="font-size: 16pt;">Ju Hu</a><sup>1</sup>&nbsp;&nbsp;&nbsp;
+                    <br>
+                    <a href="https://www.linkedin.com/in/dhritiman-sagar-5775169/" target="_blank", style="font-size: 16pt;">Dhritiman Sagar</a><sup>1</sup>&nbsp;&nbsp;&nbsp;
+                    <a href="https://sites.google.com/site/boyuaneecs" target="_blank", style="font-size: 16pt;">Bo Yuan</a><sup>2</sup>&nbsp;&nbsp;&nbsp;
+                    <a href="http://www.stulyakov.com/" target="_blank", style="font-size: 16pt;">Sergey Tulyakov</a><sup>1</sup>&nbsp;&nbsp;&nbsp;
+                    <a href="https://alanspike.github.io/" target="_blank", style="font-size: 16pt;">Jian Ren</a><sup>1</sup>
+                  </div>
+                  <div class="institution", style="font-size: 16pt;">
+                    <sup>1</sup>Snap Inc.&nbsp;&nbsp;&nbsp;
+                    <sup>2</sup>Rutgers University&nbsp;&nbsp;&nbsp;
+                  </div>
+                <br>
+                <!-- <h2 class="col-md-12 text-center">
+                   <b> NeurIPs 2024</b><br>
+                </h2> -->
+            </div>
+        </div>
+
+        
+        <div class="col-md-12 text-center">
+            <div class="publication-links">
+
+              <!-- ArXiv Link -->
+              <span class="link-block">
+                <a href="" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming)</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <img src="assets/images/hf.png" alt="Hugging Face Demo">
+                  </span>
+                  <span>Demo (coming)</span>
+                </a>
+              </span> -->
+            </div>
+        </div>              
+
+
+        <br>&nbsp;
+        <div class="tldr">
+            BitsFusion compresses the UNet of Stable Diffusion v1.5 (1.72 GB, FP16) into 1.99 bits (219 MB), achieving a 7.9X compression ratio and even better performance. 
+        </div>
+
+        <br>&nbsp;
+        <div class="row">
+            <div class="body">
+
+
+                <div class="image-container">
+                    <img src="images/teaser6.jpg" alt="overview" style="width:100%", class="img-responsive">
+                    <div class="overlay">
+                        <div class="textteaser">
+
+                            <br />Left 1: a portrait of an anthropomorphic cyberpunk raccoon smoking a cigar, cyberpunk!, fantasy, elegant, digital painting, artstation, concept art, matte, sharp focus, illustration, art by josan Gonzalez
+
+                            <br /><br />Left 2: Pirate ship trapped in a cosmic maelstrom nebula, rendered in cosmic beach whirlpool engine, volumetric lighting, spectacular, ambient lights, light pollution, cinematic atmosphere, art nouveau style, illustration art artwork by SenseiJaye, intricate detail.
+
+                            <br /><br />Left 3: tropical island, 8 k, high resolution, detailed charcoal drawing, beautiful hd, art nouveau, concept art, colourful, in the style of vadym meller
+
+                            <br /><br />Left 4: anthropomorphic art of a fox wearing a white suit, white cowboy hat, and sunglasses, smoking a cigar, texas inspired clothing by artgerm, victo ngai, ryohei hase, artstation. highly detailed digital painting, smooth, global illumination, fantasy art by greg rutkowsky, karl spitzweg
+
+                            <br /><br />Left 5: a painting of a lantina elder woman by Leonardo da Vinci . details, smooth, sharp focus, illustration, realistic, cinematic, artstation, award winning, rgb , unreal engine, octane render, cinematic light, macro, depth of field, blur, red light and clouds from the back, highly detailed epic cinematic concept art CG render made in Maya, Blender and Photoshop, octane render, excellent composition, dynamic dramatic cinematic lighting, aesthetic, very inspirational, arthouse.
+
+                            <br /><br />Left 6: panda mad scientist mixing sparkling chemicals, high-contrast painting
+
+                            <br /><br />Left 7: An astronaut riding a horse on the moon, oil painting by Van Gogh.
+
+                            <br /><br />Left 8: A red dragon dressed in a tuxedo and playing chess. The chess pieces are fashioned after robots.
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="body">
+                <b><i>Top</i></b>: Images generated from full-precision Stable Diffusion v1.5. <b><i>Bottom</i></b>: Images generated from BitsFusion, where the weights of UNet are quantized into <b>1.99 bits</b>, achieving <b>7.9X smaller</b> storage than the one from Stable Diffusion v1.5. All the images are synthesized under the setting of using PNDM sampler with 50 sampling steps and random seed as 1024.
+            </div>
+            <br>
+
+        </div>
+
+
+        <div class="row">
+            <div class="body">
+                <h3 class="title is-4">Abstract</h3>
+                <div class="body">
+                    Diffusion-based image generation models have achieved great success in recent years by showing the capability of synthesizing high-quality content. However, these models contain a huge number of parameters, resulting in a significantly large model size. Saving and transferring them is a major bottleneck for various applications, especially those running on resource-constrained devices. In this work, we develop a novel weight quantization method that quantizes the UNet from Stable Diffusion v1.5 to <b><i>1.99 bits</i></b>, achieving a model with <b><i>7.9X smaller</i></b> size while exhibiting even <b><i>better</i></b> generation quality than the original one. Our approach includes several novel techniques, such as assigning optimal bits to each layer, initializing the quantized model for better performance, and improving the training strategy to dramatically reduce quantization error. Furthermore, we extensively evaluate our quantized model across various benchmark datasets and through human evaluation to demonstrate its superior generation quality.
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    On-Device Demo - Screen recorded version (inputting text accelerated)
+                </h3>
+                <div class="text-center">
+                    <iframe width="300" height="450" src="https://www.youtube.com/embed/ZwUaza-QyP4" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Demo Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                            src="https://www.youtube.com/embed/zK5PQ3Oj_L8" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <br>&nbsp;
+        <div class="row">
+            <div class="body">
+                <h3 class="title is-4">
+                    Overview of Training and Inference Pipeline
+                </h3>
+                <img src="images/pipeline.jpg" class="img-responsive" alt="overview"><br>
+            </div>
+
+            <div class="body">
+                <b><i>Left</i></b>: We analyze the quantization error for each layer in SD-v1.5 and derive the mixed-precision recipe to assign different bit widths to different layers. We then initialize the quantized UNet by adding a balance integer, pre-computing and caching the time embedding, and alternately optimizing the scaling factor. 
+                <b><i>Middle</i></b>: During the Stage-I training, we freeze the teacher model (i.e., SD-v1.5) and optimize the quantized UNet through CFG-aware quantization distillation and feature distillation losses, along with sampling time steps by considering quantization errors. During the Stage-II training, we fine-tune the previous model with the noise prediction. 
+                <b><i>Right</i></b>: For the inference stage, using the pre-cached time features, our model processes text prompts and generates high-quality images.
+            </div>
+
+            <br>
+        </div>
+
+
+
+        <div class="row">
+            <div class="body">
+                <!-- <h3 style="font-weight: bold"> -->
+                <h3 class="title is-4">
+                    Benchmark Comparisons
+                </h3>
+                <img src="images/results.png" class="img-responsive" alt="overview"><br>
+            </div>
+
+                <div class="body">
+                    Comparison between our 1.99-bits model vs. SD-v1.5 on various evaluation metrics with CFG scales ranging from 2.5 to 9.5.
+                </div>
+        </div>
+
+        <br>&nbsp;
+        <div class="row">
+            <div class="body">
+                <h3 class="title is-4">
+                    Human Evaluation
+                </h3>
+            <div style="text-align: center;"> <!-- This div centers the image horizontally -->
+                <img src="images/human_eval_overall.jpg" alt="Descriptive Alt Text" 
+                     style="width: 30%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+            </div>
+             </div>
+
+            <div class="body">
+                Human evaluation comparisons between SD-v1.5 and BitsFusion. BitsFusion is favored 54.41% of the time over SD-v1.5.
+            </div>
+        </div>
+
+        <br>&nbsp;
+        <div class="row">
+            <div class="body">
+                <h3 class="title is-4">
+                    More Comparisons
+                </h3>
+                <div class="body">
+                    Hover the cursor on the images to reveal the prompts.
+                </div>
+
+
+                <div class="image-container">
+                    <img src="images/appendix_image_1.jpg" alt="overview" style="width:100%", class="img-responsive">
+                    <div class="overlay">
+                        <div class="text">
+                            <br />Left 1: A person standing on the desert, desert waves, gossip illustration, half red, half blue, abstract image of sand, clear style, trendy illustration, outdoor, top view, clear style, precision art, ultra high definition image 
+                            <br /> 
+                            <br />Left 2: A detailed oil painting of an old sea captain, steering his ship through a storm. Saltwater is splashing against his weathered face, determination in his eyes. Twirling malevolent clouds are seen above and stern waves threaten to submerge the ship while seagulls dive and twirl through the chaotic landscape. Thunder and lights embark in the distance, illuminating the scene with an eerie green glow. 
+                            <br />
+                            <br />Left 3: A solitary figure shrouded in mists peers up from the cobble stone street at the imposing and dark gothic buildings surrounding it. an old-fashioned lamp shines nearby. oil painting. 
+                            <br />
+                            <br />Left 4: A deep forest clearing with a mirrored pond reflecting a galaxy-filled night sky 
+                            <br />
+                            <br />Left 5: a handsome 24 years old boy in the middle with sky color background wearing eye glasses, it's super detailed with anime style, it's a portrait with delicated eyes and nice looking face 
+                            <br />
+                            <br />Left 6: A dog that has been meditating all the time.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="body" style="text-align: center;">
+                    <b><i>Top</i></b>: full-precision Stable Diffusion v1.5. <b><i>Bottom</i></b>: 1.99 bits BitsFusion.
+                </div>
+                <br>&nbsp;
+                <br>&nbsp;
+
+                <div class="image-container">
+                    <img src="images/appendix_image_2.jpg" alt="overview" style="width:100%", class="img-responsive">
+                    <div class="overlay">
+                        <div class="text">
+
+                            <br />Left 1: A small cactus with a happy face in the Sahara desert.
+                            <br /><br />Left 2: A middle-aged woman of Asian descent, her dark hair streaked with silver, appears fractured and splintered, intricately embedded within a sea of broken porcelain. The porcelain glistens with splatter paint patterns in a harmonious blend of glossy and matte blues, greens, oranges, and reds, capturing her dance in a surreal juxtaposition of movement and stillness. Her skin tone, a light hue like the porcelain, adds an almost mystical quality to her form.
+                            <br /><br />Left 3: A high contrast portrait photo of a fluffy hamster wearing an orange beanie and sunglasses holding a sign that says "Let's PAINT!”
+                            <br /><br />Left 4: An extreme close-up of an gray-haired man with a beard in his 60s, he is deep in thought pondering the history of the universe as he sits at a cafe in Paris, his eyes focus on people offscreen as they walk as he sits mostly motionless, he is dressed in a wool coat suit coat with a button-down shirt , he wears a brown beret and glasses and has a very professorial appearance, and the end he offers a subtle closed-mouth smile as if he found the answer to the mystery of life, the lighting is very cinematic with the golden light and the Parisian streets and city in the background, depth of field, cinematic 35mm film.
+                            <br /><br />Left 5: poster of a mechanical cat, techical Schematics viewed from front and side view on light white blueprint paper, illustartion drafting style, illustation, typography, conceptual art, dark fantasy steampunk, cinematic, dark fantasy
+                            <br /><br />Left 6: I want to supplement vitamin c, please help me paint related food.
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="body" style="text-align: center;">
+                    <b><i>Top</i></b>: full-precision Stable Diffusion v1.5. <b><i>Bottom</i></b>: 1.99 bits BitsFusion.
+                </div>
+                <br>&nbsp;
+                <br>&nbsp;
+
+                <div class="image-container">
+                    <img src="images/appendix_image_3.jpg" alt="overview" style="width:100%", class="img-responsive">
+                    <div class="overlay">
+                        <div class="text">
+                            <br />Left 1: new cyborg with cybertronic gadgets and vr helmet, hard surface, beautiful colours, sharp textures, shiny shapes, acid screen, biotechnology, tim hildebrandt, bruce pennington, donato giancola, larry elmore, masterpiece, trending on artstation, featured on pixiv, cinematic composition, dramatic pose, beautiful lighting, sharp, details, hyper - detailed, hd, hdr, 4 k, 8 k
+                            <br /><br />Left 2: portrait of teenage aphrodite, light freckles, curly copper colored hair, smiling kindly, wearing an embroidered white linen dress with lace neckline, intricate, elegant, mother of pearl jewelry, glowing lights, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by wlop, mucha, artgerm, and greg Rutkowski
+                            <br /><br />Left 3: portrait of a dystopian cute dog wearing an outfit inspired by the handmaid ï¿½ s tale ( 2 0 1 7 ), intricate, headshot, highly detailed, digital painting, artstation, concept art, sharp focus, cinematic lighting, digital painting, art by artgerm and greg rutkowski, alphonse mucha, cgsociety
+                            <br /><br />Left 4: Portrait of a man by Greg Rutkowski, symmetrical face, a marine with a helmet, using a VR Headset, Kubric Stare, crooked smile, he's wearing a tacitcal gear, highly detailed portrait, scifi, digital painting, artstation, book cover, cyberpunk, concept art, smooth, sharp foccus ilustration, Artstation HQ
+                            <br /><br />Left 5: Film still of female Saul Goodman wearing a catmaid outfit, from Red Dead Redemption 2 (2018 video game), trending on artstation, artstationHD, artstationHQ
+                            <br /><br />Left 6: oil paining of robotic humanoid, intricate mechanisms, highly detailed, professional digital painting, Unreal Engine 5, Photorealism, HD quality, 8k resolution, cinema 4d, 3D, cinematic, professional photography, art by artgerm and greg rutkowski and alphonse mucha and loish and WLOP
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="body" style="text-align: center;">
+                    <b><i>Top</i></b>: full-precision Stable Diffusion v1.5. <b><i>Bottom</i></b>: 1.99 bits BitsFusion.
+                </div>
+                <br>&nbsp;
+                <br>&nbsp;
+
+                <div class="image-container">
+                    <img src="images/appendix_image_4.jpg" alt="overview" style="width:100%", class="img-responsive">
+                    <div class="overlay">
+                        <div class="text">
+                            <br />Left 1: anthropomorphic tetracontagon head in opal edgy darknimite mudskipper, intricate, elegant, highly detailed animal monster, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm, bob eggleton, michael whelan, stephen hickman, richard corben, wayne barlowe, trending on artstation and greg rutkowski and alphonse mucha, 8 k
+                            <br /><br />Left 2: background shows moon, many light effects, particle, lights, gems, symmetrical!!! centered portrait dark witch, large cloak, fantasy forest landscape, dragon scales, fantasy magic, undercut hairstyle, short purple black fade hair, dark light night, intricate, elegant, sharp focus, digital painting, concept art, matte, art by wlop and artgerm and greg rutkowski and alphonse mucha, masterpiece
+                            <br /><br />Left 3: cat seahorse fursona, autistic bisexual graphic designer and musician, long haired attractive androgynous fluffy humanoid character design, sharp focus, weirdcore voidpunk digital art by artgerm, akihiko yoshida, louis wain, simon stalenhag, wlop, noah bradley, furaffinity, artstation hd, trending on deviantart
+                            <br /><br />Left 4: concept art of ruins of a victorian city burning down by j. c. leyendecker, wlop, ruins, dramatic, octane render, epic painting, extremely detailed, 8 k
+                            <br /><br />Left 5: hyperrealistic Gerald Gallego as a killer clown from outer space, trending on artstation, portrait, sharp focus, illustration, art by artgerm and greg rutkowski and magali Villeneuve
+                            <br /><br />Left 6: low angle photo of a squirrel dj wearing on - ear headphones and colored sunglasses, stadning at a dj table playing techno music at a dance club, hyperrealistic, highly detailed, intricate, smoke, colored lights, concept art, digital art, oil painting, character design by charlie bowater, ross tran, artgerm, makoto shinkai, wlop
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="body" style="text-align: center;">
+                    <b><i>Top</i></b>: full-precision Stable Diffusion v1.5. <b><i>Bottom</i></b>: 1.99 bits BitsFusion.
+                </div>
+                <br>&nbsp;
+                <br>&nbsp;
+
+                <div class="image-container">
+                    <img src="images/appendix_image_5.jpg" alt="overview" style="width:100%", class="img-responsive">
+                    <div class="overlay">
+                        <div class="text">
+                            <br />Left 1: a photograph of an ostrich wearing a fedora and singing soulfully into a microphone
+                            <br /><br />Left 2: a pirate ship landing on the moon
+                            <br /><br />Left 3: a pumpkin with a candle in it
+                            <br /><br />Left 4: a rabbit wearing a black tophat and monocle
+                            <br /><br />Left 5: a red sports car on the road
+                            <br /><br />Left 6: a robot cooking in the kitchen.
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="body" style="text-align: center;">
+                    <b><i>Top</i></b>: full-precision Stable Diffusion v1.5. <b><i>Bottom</i></b>: 1.99 bits BitsFusion.
+                </div>
+                <br>&nbsp;
+                <br>&nbsp;
+
+                <div class="image-container">
+                    <img src="images/appendix_image_7.jpg" alt="overview" style="width:100%", class="img-responsive">
+                    <div class="overlay">
+                        <div class="text">
+                            <br />Left 1: a baby daikon radish in a tutu
+                            <br /><br />Left 2: a baby penguin wearing a blue hat, red gloves, green shirt, and yellow pants
+                            <br /><br />Left 3: a woman with long black hair and dark skin
+                            <br /><br />Left 4: an emoji of a baby penguin wearing a blue hat, red gloves, green shirt, and yellow pants
+                            <br /><br />Left 5: a blue sports car on the road
+                            <br /><br />Left 6: a butterfly.
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="body" style="text-align: center;">
+                    <b><i>Top</i></b>: full-precision Stable Diffusion v1.5. <b><i>Bottom</i></b>: 1.99 bits BitsFusion.
+                </div>
+                <br>&nbsp;
+                <br>&nbsp;
+
+                <div class="image-container">
+                    <img src="images/appendix_image_6.jpg" alt="overview" style="width:100%", class="img-responsive">
+                    <div class="overlay">
+                        <div class="text">
+                            <br />Left 1: Helmet of a forgotten Deity, clowing corals, extremly detailed digital painting, in the style of Fenghua Zhong and Ruan Jia and jeremy lipking and Peter Mohrbacher, mystical colors, rim light, beautiful lighting, 8k, stunning scene, raytracing, octane, trending on artstation
+                            <br /> 
+                            <br />Left 2: Jeff Bezos as a female amazon warrior, closeup, D\&D, fantasy, intricate, elegant, highly detailed, digital painting, artstation, concept art, matte, sharp focus, illustration, hearthstone, art by Artgerm and Greg Rutkowski and Alphonse Mucha
+                            <br /> 
+                            <br />Left 3: Portrait of a draconic humanoid, HD, illustration, epic, D\&D, fantasy, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, monster hunter illustrations art book
+                            <br /> 
+                            <br />Left 4: [St.Georges slaying a car adorned with checkered flag. Soviet Propaganda!!! poster!!!, elegant, highly detailed, digital painting, artstation, concept art, matte, sharp focus, illustration, octane render, unreal engine, photography]
+                            <br /> 
+                            <br />Left 5: a fire - breathing dragon at a medieval hobbit home, ornate, beautiful, atmosphere, vibe, mist, smoke, chimney, rain, wet, pristine, puddles, waterfall, clear stream, bridge, forest, flowers, concept art illustration, color page, 4 k, tone mapping, doll, akihiko yoshida, james jean, andrei riabovitchev, marc simonetti, yoshitaka amano, digital illustration, greg rutowski, volumetric lighting, sunbeams, particles
+                            <br /> 
+                            <br />Left 6: portrait of a well-dressed raccoon, oil painting in the style of Rembrandt
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="body" style="text-align: center;">
+                    <b><i>Top</i></b>: full-precision Stable Diffusion v1.5. <b><i>Bottom</i></b>: 1.99 bits BitsFusion.
+                </div>
+                <br>&nbsp;
+                <br>&nbsp;
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>
+                Citation
+            </h3>
+            <div class="form-group col-md-10 col-md-offset-1">
+                <textarea id="bibtex" class="form-control" readonly="" style="display: none;">
+                    @article{sui2024bitsfusion,
+                    title={BitsFusion: 1.99 bits Weight Quantization of Diffusion Model},
+                    author={Yang Sui, XXX},
+                    journal={XXX},
+                    year={2024}
+                    }</textarea>
+                <div class="CodeMirror cm-s-default CodeMirror-wrap">
+                    <div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 4px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <p style="color:gray; text-align:right">
+                <a href="http://mgharbi.com/">Website Credits</a>.
+            </p>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
